@@ -1,4 +1,6 @@
 import itertools  #for generating car id
+import operator
+
 from example_board_22 import *
 new_id = itertools.count()
 
@@ -40,9 +42,38 @@ class Board:
             path += self.prev_board.get_path()
         path += self.prev_step + "\n | \n V "
         return path
-
-def is_solved(board, n):
-    pass
+    
+    @staticmethod
+    def is_solved(self, n):
+        pass
+    
+    @staticmethod
+    def next_boards(self, board_set, n)
+        vacancy_mat = self.vacancy_mat()
+        res = []
+        for item in self.board_dict.items():
+            car,  pos_i, pos_j =  item[0], item[1][0], item[1][1]
+            step = (0,1) if car.is_vertical else (1,0)
+            pos_i, pos_j = tuple(map(operator.sub((pos_i,pos_j), step)))
+          
+            while pos_i > 0 and pos_j > 0 and not vacancy_mat[pos_i][pos_j]:
+                new_board_dict = self. board_dict.copy()
+                new_board_dict[car] = [pos_i, pos_j]
+                new_board = Board(new_board_dict, n, self, "move " + str(car) + " to: " + (pos_i, pos_j))
+                res.append(new_board)
+                pos_i, pos_j = tuple(map(operator.sub((pos_i,pos_j), step)))
+            pos_i, pos_j = item[1][0], item[1][1]
+            pos_i, pos_j += step*(car.length-1)
+            
+            while pos_i < n and pos_j < n and not vacancy_mat[pos_i][pos_j]:
+                new_board_dict = self. board_dict.copy()
+                new_board_dict[car] = [pos_i, pos_j]
+                new_board = Board(new_board_dict, n, self, "move " + str(car) + " to: " + (pos_i, pos_j))
+                res.append(new_board)
+                pos_i, pos_j += step
+            
+            
+                
 
 def main():
     print(board_dict_22)
