@@ -2,10 +2,32 @@ Here are function and object descriptions:
 
 
 @function "solve":
-parameters: board_dict- a python dictionary where keys are cars and values are tuples that represent coordinates.
+parameters: board_dict- a python dictionary where keys are cars and values are lists that represent coordinates.
             n - dimension of rush-hour board (integer)
             
 returns: string of solution instruction if found, else string "no solution found"
+
+
+
+@object "Car":
+fields:     length (int)
+            color (string)
+            is_red (boolean)
+            is_vertical (boolean)
+            id (string)   ## needs further description
+methods: "color_code" - returns first two letters of field "color"
+
+
+@object "Board":
+fields:     board_dict- a python dictionary where keys are cars and values are lists that represent coordinates.
+            prev_board (Board)
+            prev_step (string)
+            n - dimension of rush-hour board (integer)
+            next_list (list of Boards)
+            id (string)   ## needs further description and function
+methods: "get_path" - returns string
+
+
 
 
 
