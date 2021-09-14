@@ -4,6 +4,22 @@ import operator
 from example_board_22 import *
 new_id = itertools.count()
 
+def forward(tup, car_direction, steps):
+    res = tup
+    if car_direction == "down":
+        res = (tup[0]+steps, tup[1])
+    else:
+        res = (tup[0], tup[1]+steps)
+    return res
+
+def backward(tup, car_direction, steps):
+    res = tup
+    if car_direction == "down":
+        res = (tup[0]-steps, tup[1])
+    else:
+        res = (tup[0], tup[1]-steps)
+    return res
+
 class Car:
     def __init__(self, is_vertical, color, length):
         self.is_vertical = is_vertical
@@ -53,26 +69,31 @@ class Board:
         res = []
         for item in self.board_dict.items():
             car,  pos_i, pos_j =  item[0], item[1][0], item[1][1]
-            step = (0,1) if car.is_vertical else (1,0)
-            pos_i, pos_j = tuple(map(operator.sub((pos_i,pos_j), step)))
+            car_direction = "down" if car.is_vertical else "right"
+            pos_i, pos_j = backward((pos_i, pos_j), car_direction, 1))
           
             while pos_i > 0 and pos_j > 0 and not vacancy_mat[pos_i][pos_j]:
                 new_board_dict = self. board_dict.copy()
                 new_board_dict[car] = [pos_i, pos_j]
                 new_board = Board(new_board_dict, n, self, "move " + str(car) + " to: " + (pos_i, pos_j))
-                res.append(new_board)
-                pos_i, pos_j = tuple(map(operator.sub((pos_i,pos_j), step)))
+                if not new_board in board_set:
+					res.append(new_board)
+                pos_i, pos_j = backward((pos_i, pos_j), car_direction, 1))
+                
             pos_i, pos_j = item[1][0], item[1][1]
-            pos_i, pos_j += step*(car.length-1)
-            
-            while pos_i < n and pos_j < n and not vacancy_mat[pos_i][pos_j]:
+           
+            pos_i, pos_j = forward((pos_i, pos_j), car_direction, 1))
+			front_pos_i, front_pos_j =forward((pos_i, pos_j), car_direction, (car.length-1))
+            while front_pos_i < n and front_pos_j < n and not vacancy_mat[front_pos_i][front_pos_j]:
                 new_board_dict = self. board_dict.copy()
                 new_board_dict[car] = [pos_i, pos_j]
                 new_board = Board(new_board_dict, n, self, "move " + str(car) + " to: " + (pos_i, pos_j))
-                res.append(new_board)
-                pos_i, pos_j += step
+				if not new_board in board_set:
+					res.append(new_board)
+                pos_i, pos_j = forward((pos_i, pos_j), car_direction, 1))
+			return res
             
-            
+          
                 
 
 def main():
