@@ -1,0 +1,13 @@
+Here are function and object descriptions:
+
+
+@function "solve":
+parameters: board_dict- a python dictionary where keys are cars and values are tuples that represent coordinates.
+            n - dimension of rush-hour board (integer)
+            
+returns: string of solution instruction if found, else string "no solution found"
+
+
+
+
+            
