@@ -7,7 +7,19 @@ parameters: board_dict- a python dictionary where keys are cars and values are l
             
 returns: string of solution instruction if found, else string "no solution found"
 
+
 @function "next_boards":
+parameters: board
+            board_set- a python set of all boards that have been added to the game tree
+            n - dimension of rush-hour board (integer)
+returns: list of all legal countinuiation boards that are not yet in "board_set"
+
+
+@function "is_solved":
+parameters: board
+            n - dimension of rush-hour board (integer)
+returns: boolean, true iff the red car has a clear path to exit
+            
 
 
 
