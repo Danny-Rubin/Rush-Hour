@@ -7,6 +7,9 @@ parameters: board_dict- a python dictionary where keys are cars and values are l
             
 returns: string of solution instruction if found, else string "no solution found"
 
+@function "next_boards":
+
+
 
 
 @object "Car":
