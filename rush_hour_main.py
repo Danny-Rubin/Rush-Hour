@@ -88,10 +88,10 @@ class Board:
                 new_board_dict = self. board_dict.copy()
                 new_board_dict[car] = [pos_i, pos_j]
                 new_board = Board(new_board_dict, n, self, "move " + str(car) + " to: " + (pos_i, pos_j))
-				if not new_board in board_set:
+				if not new_board.id in board_set:
 					res.append(new_board)
                 pos_i, pos_j = forward((pos_i, pos_j), car_direction, 1))
-			return res
+	return res
             
           
                 
