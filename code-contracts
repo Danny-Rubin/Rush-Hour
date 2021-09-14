@@ -34,7 +34,7 @@ fields:     length (int)
             is_red (boolean)
             is_vertical (boolean)
             id (string)   ## needs further description
-methods: "color_code" - returns first two letters of field "color"
+methods: "color_code" - returns color code for car
 
 
 @object "Board":
