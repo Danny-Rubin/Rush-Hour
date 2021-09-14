@@ -1,50 +1,51 @@
 Here are function and object descriptions:
 
 
-@function "solve":
+@function   "solve":
 parameters: board_dict- a python dictionary where keys are cars and values are lists that represent coordinates.
             n - dimension of rush-hour board (integer)
             
-returns: string of solution instruction if found, else string "no solution found"
+returns:    string of solution instruction if found, else string "no solution found"
 
 
-@function "next_boards":
-parameters: board
-            board_set- a python set of all boards that have been added to the game tree
+@function   "is_solved":
+parameters: 
+            board
             n - dimension of rush-hour board (integer)
-returns: list of all legal countinuiation boards that are not yet in "board_set"
-
-
-@function "is_solved":
-parameters: board
-            n - dimension of rush-hour board (integer)
-returns: boolean, true iff the red car has a clear path to exit
+returns:    boolean, true iff the red car has a clear path to exit
             
 
-@function "vacancy_mat":
+@function   "vacancy_mat":
 parameters: board
             n - dimension of rush-hour board (integer)
-returns: list of lists of booleans where a true entry represents an occupied block ##perhaps change boolean to car id's
+returns:    list of lists of booleans where a true entry represents an occupied block ##perhaps change boolean to car id's
 
 
 
-@object "Car":
+@object     "Car":
 fields:     length (int)
             color (string)
             is_red (boolean)
             is_vertical (boolean)
             id (string)   ## needs further description
-methods: "color_code" - returns color code for car
+methods:    "color_code" - returns color code for car
 
 
-@object "Board":
+@object     "Board":
 fields:     board_dict- a python dictionary where keys are cars and values are lists that represent coordinates.
             prev_board (Board)
             prev_step (string)
             n - dimension of rush-hour board (integer)
             next_list (list of Boards)
             id (string)   ## needs further description and function
-methods: "get_path" - returns string
+methods:    "get_path" - returns string
+            "next_boards": 
+            parameters: 
+            self
+            board_set- a python set of all boards that have been added to the game tree
+            n - dimension of rush-hour board (integer)
+            returns: list of all legal countinuiation boards that are not yet in "board_set"
+
 
 
 
