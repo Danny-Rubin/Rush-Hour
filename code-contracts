@@ -21,6 +21,10 @@ parameters: board
 returns: boolean, true iff the red car has a clear path to exit
             
 
+@function "vacancy_mat":
+parameters: board
+            n - dimension of rush-hour board (integer)
+returns: list of lists of booleans where a true entry represents an occupied block ##perhaps change boolean to car id's
 
 
 
