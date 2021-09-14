@@ -41,6 +41,8 @@ class Board:
         path += self.prev_step + "\n | \n V "
         return path
 
+def is_solved(board, n):
+    pass
 
 def main():
     print(board_dict_22)
