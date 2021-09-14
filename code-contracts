@@ -15,12 +15,6 @@ parameters:
 returns:    boolean, true iff the red car has a clear path to exit
             
 
-@function   "vacancy_mat":
-parameters: board
-            n - dimension of rush-hour board (integer)
-returns:    list of lists of booleans where a true entry represents an occupied block ##perhaps change boolean to car id's
-
-
 
 @object     "Car":
 fields:     length (int)
@@ -28,7 +22,8 @@ fields:     length (int)
             is_red (boolean)
             is_vertical (boolean)
             id (string)   ## needs further description
-methods:    "color_code" - returns color code for car
+methods:    
+@method     "color_code" - returns color code for car
 
 
 @object     "Board":
@@ -38,14 +33,26 @@ fields:     board_dict- a python dictionary where keys are cars and values are l
             n - dimension of rush-hour board (integer)
             next_list (list of Boards)
             id (string)   ## needs further description and function
-methods:    "get_path" - returns string
-            "next_boards": 
+methods:    
+@method     "get_path" - returns string
+@method     "next_boards": 
             parameters: 
             self
             board_set- a python set of all boards that have been added to the game tree
             n - dimension of rush-hour board (integer)
             returns: list of all legal countinuiation boards that are not yet in "board_set"
-
+            
+@method     "vacancy_mat":
+            parameters: board
+            n - dimension of rush-hour board (integer)
+            returns:    list of lists of booleans where a true entry represents an occupied block ##perhaps change boolean to car id's
+            
+@method   "is_solved":
+            parameters: 
+            board
+            n - dimension of rush-hour board (integer)
+            returns:    boolean, true iff the red car has a clear path to exit
+            
 
 
 
