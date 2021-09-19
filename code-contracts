@@ -45,8 +45,7 @@ methods:
             returns: list of all legal countinuiation boards that are not yet in "board_set"
             
 @method     "vacancy_mat":
-            parameters: board
-            n - dimension of rush-hour board (integer)
+            parameters: self
             returns:    list of lists of booleans where a true entry represents an occupied block ##perhaps change boolean to car id's
 @method     "get_id":
             parameters: self
