@@ -1,4 +1,6 @@
 Here are function and object descriptions:
+CONSTANTS:
+RED_CAR_LEN- represents the length of the red car (int)
 
 
 @function   "solve":    V
