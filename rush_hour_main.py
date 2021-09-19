@@ -41,6 +41,12 @@ class Board:
             path += self.prev_board.get_path()
         path += self.prev_step + "\n | \n V "
         return path
+	
+	def vacancy_mat(self):
+		vac_mat = [[False for i in range(self.n)] for j in range(self.n)]
+		for car in self.board_dict.keys():
+			for i in range(car.length):
+				vac_mat[board_dict[car][0] + i*is_vertical][board_dict[car][1] + i*( Not is_vertical)]
 
 
 def main():
