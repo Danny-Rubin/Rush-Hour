@@ -32,7 +32,7 @@ fields:     board_dict- a python dictionary where keys are cars and values are l
             prev_step (string)
             n - dimension of rush-hour board (integer)
             next_list (list of Boards)
-            id (string)   ## needs further description and function
+            red_car_pos - position of the red car (tuple)
 methods:    
 @method     "get_path" - returns string
 @method     "next_boards": 
