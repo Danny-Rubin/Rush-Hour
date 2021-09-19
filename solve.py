@@ -1,8 +1,13 @@
 from rush_hour_main import *
 
 def is_solved(board, n):
-    # needed to be written!
-    pass
+    car_front_pos = forward(board.red_car_pos, "right", RED_CAR_LEN-1)
+    vac_mat = board.vacancy_mat()
+    while car_front_pos[1] < n - 1:
+        if vac_mat[car_front_pos[0]][car_front_pos[1] + 1] == True:
+            return False
+        car_front_pos = forward(car_front_pos, "right", 1)
+    return True
 
 def solve(board_dict, n=6):
     start = Board(board_dict, n)
