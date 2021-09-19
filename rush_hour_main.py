@@ -29,12 +29,13 @@ class Car:
         self.id = hex(new_id.__next__())[2:]
 
     # a func that codes the car color to a short str
+	@staticmethod
     def color_code(self):
-        color_words = self.color.split(" ")  # in case the name contains few words
-        col_code = ""
-        for word in color_words:
-            col_code += word[:2]
-        return col_code
+        if " " not in self.color:
+            return self.color[:2]
+        else:
+        	color_words = self.color.split(" ")  # in case the name contains few words
+			return color_words[0][0] + color_words[1][0]
         # what about another way to prevent identical color codes like a dict????
 
     def __repr__(self):
@@ -94,7 +95,7 @@ class Board:
 					res.append(new_board.get_id())
 					board_set.add(new_board.get_id())
                 pos_i, pos_j = forward((pos_i, pos_j), car_direction, 1))
-	return res
+        return res
 
 	def print_board():
 		n = self.n
@@ -110,6 +111,14 @@ class Board:
 	
 
 #mat = [["a1", "b2", "c3"], ["d1", "b2", "c3"], ["a1", "e2", "c3"]]
+
+        
+	def vacancy_mat(self):
+		vac_mat = [[False for i in range(self.n)] for j in range(self.n)]
+		for car in self.board_dict.keys():
+			for i in range(car.length):
+				vac_mat[board_dict[car][0] + i*car.is_vertical][board_dict[car][1] + i*(not car.is_vertical)]
+		return vac_mat
 
 
 def print_matrix(mat):
