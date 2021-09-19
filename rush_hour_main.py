@@ -11,12 +11,13 @@ class Car:
         self.id = hex(new_id.__next__())[2:]
 
     # a func that codes the car color to a short str
+	@staticmethod
     def color_code(self):
-        color_words = self.color.split(" ")  # in case the name contains few words
-        col_code = ""
-        for word in color_words:
-            col_code += word[:2]
-        return col_code
+        if " " not in self.color:
+            return self.color[:2]
+        else:
+        	color_words = self.color.split(" ")  # in case the name contains few words
+			return color_words[0][0] + color_words[1][0]
         # what about another way to prevent identical color codes like a dict????
 
     def __repr__(self):
