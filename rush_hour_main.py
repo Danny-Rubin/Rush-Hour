@@ -49,7 +49,7 @@ class Board:
         self.prev_board = prev_board
         self.prev_step = prev_step
         self.id = ""    # TDL: create a function that converts board to id"
-
+	
     def get_path(self):
         path = ""
         if self.prev_board == None:
@@ -57,7 +57,8 @@ class Board:
         else:
             path += self.prev_board.get_path()
         path += self.prev_step + "\n | \n V "
-        return path
+        return path	
+
     
     @staticmethod
     def is_solved(self, n):
@@ -94,14 +95,42 @@ class Board:
 					board_set.add(new_board.get_id())
                 pos_i, pos_j = forward((pos_i, pos_j), car_direction, 1))
 	return res
-            
-          
-                
 
+	def print_board():
+		n = self.n
+		board = self
+   		mat = [[None for i in range(n)] for j in range(n)]
+    	for car in board.board_dict.keys():
+			code = car.color_code()
+			for coordinate in car.coordinates(car, board.board_dict[car]):
+				mat[coordinate[0]][coordinate[1]] = code
+			
+    	print_matrix(mat)
+    	return
+	
+
+#mat = [["a1", "b2", "c3"], ["d1", "b2", "c3"], ["a1", "e2", "c3"]]
+
+
+def print_matrix(mat):
+    n = len(mat)
+    for row in mat:
+        for item in row:
+            print(item, end = " ")
+        print()      
+          
+
+def car_coordinates(car, position):
+	res = []
+	for i in range(car.length):
+		res.append(position[0] + i*car.is_vertical, position[1]+ i*(not car.is_vertical))
+	return res
+			
 def main():
-    print(board_dict_22)
+#     print(board_dict_22)
     start_board = Board(board_dict_22, 6)
-    print(start_board.prev_board)
+#     print(start_board.prev_board)
+	start_board.print_board()
 
 
 if __name__ == '__main__':
