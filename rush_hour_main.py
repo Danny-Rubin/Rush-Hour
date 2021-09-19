@@ -47,6 +47,7 @@ class Board:
 		for car in self.board_dict.keys():
 			for i in range(car.length):
 				vac_mat[board_dict[car][0] + i*is_vertical][board_dict[car][1] + i*( Not is_vertical)]
+		return vac_mat
 
 
 def main():
