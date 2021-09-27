@@ -18,7 +18,7 @@ returns:    boolean, true iff the red car has a clear path to exit
             
 
 
-@object     "Car":
+@object     "Car":           V
 fields:     length (int)
             color (string)
             is_red (boolean)
@@ -37,16 +37,17 @@ fields:     board_dict- a python dictionary where keys are cars and values are l
             red_car_pos - position of the red car (tuple)
 methods:    
 @method     "get_path" - returns string
+
 @method     "next_boards": 
             parameters: 
             self
             board_set- a python set of all boards that have been added to the game tree
-            n - dimension of rush-hour board (integer)
             returns: list of all legal countinuiation boards that are not yet in "board_set"
             
 @method     "vacancy_mat":
             parameters: self
             returns:    list of lists of booleans where a true entry represents an occupied block ##perhaps change boolean to car id's
+			
 @method     "get_id":
             parameters: self
             returns:    str that represents board state
