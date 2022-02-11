@@ -1,39 +1,26 @@
 import itertools  # for generating car id
 import time
 from color_text import *
+import solve_game
 
 new_id = itertools.count()
 RED_CAR_LEN = 2
 
+# this function returns a unique identifier of a board given a board-dict. returns string.
+def get_id(my_dict):
+    dict_id = sorted([str(x[0]) + ": " + str(x[1]) for x in my_dict.items()])
+    return ", ".join(dict_id)
 
-def get_id(my_dic):
-    dic_id = sorted([str(x[0]) + ": " + str(x[1]) for x in my_dic.items()])
-    return ", ".join(dic_id)
-
-
-def solve(start_board):
-    solved = False
-    curr_level = [start_board]
-    board_set = {get_id(start_board.board_dict)}
-    level_num = 0
-    while not solved:
-        next_level = []
-        for board in curr_level:
-            if board.is_solved(board):
-                board.print_path()
-                print("number of operations: ", level_num + 1)
-                solved = True
-                break
-            board.next_list = board.next_boards(board, board_set)
-            next_level.extend(board.next_list)
-        if next_level == [] and not solved:
-            print("Solution does not exist \n")
-            break
-        level_num += 1
-        curr_level = next_level
 
 
 def forward(tup, car_direction, steps):
+    """
+    This function takes a car and moves it forward in the given amount of steps
+    :param tup: tuple of indices (x,y) that represent the position of the leftmost or upper car in the matrix
+    :param car_direction: direction in which we want to move the car (down or right)
+    :param steps:
+    :return: the position of the moved car
+    """
     res = tup
     if car_direction == "down":
         res = (tup[0] + steps, tup[1])
@@ -43,6 +30,7 @@ def forward(tup, car_direction, steps):
 
 
 def backward(tup, car_direction, steps):
+    # same like forward but moves backward
     res = tup
     if car_direction == "down":
         res = (tup[0] - steps, tup[1])
@@ -53,13 +41,13 @@ def backward(tup, car_direction, steps):
 
 class Car:
     def __init__(self, is_vertical, color, length):
-        self.is_vertical = is_vertical
+        self.is_vertical = is_vertical    # boolean field- true or false
         self.color = color
         self.is_red = self.color == "red"
         self.length = length
         self.id = hex(new_id.__next__())[2:]
 
-    def color_code(self):
+    def color_code(self):   # this method returns a two-char unique code of the car
         if " " not in self.color:
             return self.color[:2]
         else:
@@ -72,12 +60,12 @@ class Car:
 
 class Board:
     def __init__(self, board_dict, n, prev_board=None, prev_step=None):
-        self.board_dict = board_dict
+        self.board_dict = board_dict     # dict of cars:[x,y] where the edge of the car is in entry [x,y]
         self.n = n
         self.next_list = []
-        self.prev_board = prev_board
-        self.prev_step = prev_step
-        for car in self.board_dict.keys():
+        self.prev_board = prev_board    # A board object, points the previous board before making the previous step
+        self.prev_step = prev_step      # A string to describe the last step done in the solving process
+        for car in self.board_dict.keys():  # finding the postion of the red car:
             if car.color == "red":
                 self.red_car_pos = self.board_dict[car]
                 break
@@ -198,7 +186,7 @@ def main():
     while True:
         selected_level = input("Please choose a level: \n"
                                "A = beginner\nB = intermediate\nC = advanced"
-                               "\nD = expert\n")
+                               "\nD = expert\n").upper()
         if selected_level == "A":
             import example_board_beginner
             start_board = Board(example_board_beginner.board_dict, 6, None, "Begin")
@@ -215,7 +203,7 @@ def main():
             print("invalid input")
             continue
         x0 = time.perf_counter()
-        solve(start_board)
+        solve_game.solve(start_board)
         x1 = time.perf_counter()
         print("took {} seconds".format(x1 - x0))
         break
